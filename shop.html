@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Drinks & Snacks - DRINKIT 10 Mins Delivery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .shop-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 28px;
+      padding: 30px 0 50px;
+    }
+    .filters-sidebar {
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      height: fit-content;
+      position: sticky;
+      top: 85px;
+    }
+    .filter-group {
+      margin-bottom: 22px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .filter-group:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .filter-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #111;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .filter-list li {
+      margin-bottom: 8px;
+    }
+    .filter-btn {
+      width: 100%;
+      text-align: left;
+      font-size: 13px;
+      color: #475569;
+      font-weight: 600;
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--primary-green-light);
+      color: var(--primary-green-hover);
+    }
+    .shop-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      background: #fff;
+      padding: 14px 20px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+    .shop-grid-view {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .sort-select {
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      font-size: 13px;
+      font-weight: 600;
+      outline: none;
+    }
+    @media (max-width: 900px) {
+      .shop-layout {
+        grid-template-columns: 1fr;
+      }
+      .filters-sidebar {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Dark Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-left open-location-modal">
+        <i class="fa-solid fa-location-dot loc-icon"></i>
+        <span>Delivering to <strong class="location-text"><span class="active-loc-name">Lucknow, Uttar Pradesh</span> <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i></strong></span>
+      </div>
+      <div class="top-bar-center">
+        <i class="fa-solid fa-bolt"></i>
+        <span>10 Mins Delivery</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="index.html#downloadApp"><i class="fa-solid fa-mobile-screen"></i> Download App</a>
+        <span>|</span>
+        <a href="party-service.html">Partner with us</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <header class="main-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-text">DRINKIT<span>.</span></div>
+        <div class="logo-sub">Drinks • Snacks • Party</div>
+      </a>
+
+      <div class="header-search">
+        <div class="search-wrapper">
+          <input type="text" class="search-input" id="shopSearchInput" placeholder="Search for beer, whisky, vodka, chips...">
+          <button class="search-icon-btn" onclick="filterBySearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <a href="shop.html?filter=deals" class="header-action-btn offers-btn">
+          <span class="offers-badge"><i class="fa-solid fa-percent"></i></span>
+          <span>Offers</span>
+        </a>
+        <div class="account-wrapper">
+          <button class="header-action-btn">
+            <i class="fa-regular fa-user" style="font-size:16px;"></i>
+            <div style="text-align: left; line-height: 1.1;">
+              <span style="font-size: 11px; color: #94a3b8; display: block;">Sign in</span>
+              <span style="font-weight: 700;">My Account <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></span>
+            </div>
+          </button>
+          <div class="account-dropdown">
+            <a href="profile.html"><i class="fa-solid fa-user-circle"></i> My Profile</a>
+            <a href="orders.html"><i class="fa-solid fa-box"></i> My Orders</a>
+            <a href="order-tracking.html"><i class="fa-solid fa-location-crosshairs"></i> Live Tracking</a>
+            <a href="party-service.html"><i class="fa-solid fa-champagne-glasses"></i> Party Bookings</a>
+          </div>
+        </div>
+
+        <button class="cart-btn open-cart-drawer">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span>Cart</span>
+          <span class="cart-badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Category ribbon with SVG icons -->
+  <nav class="category-strip">
+    <div class="container cat-strip-container">
+      <a href="shop.html?cat=all" class="cat-item-pill"><img src="images/icons/offers.svg" width="16" height="16"> All</a>
+      <a href="shop.html?cat=beer" class="cat-item-pill"><img src="images/icons/beer.svg" width="16" height="16"> Beer</a>
+      <a href="shop.html?cat=whisky" class="cat-item-pill"><img src="images/icons/whisky.svg" width="16" height="16"> Whisky</a>
+      <a href="shop.html?cat=rum" class="cat-item-pill"><img src="images/icons/rum.svg" width="16" height="16"> Rum</a>
+      <a href="shop.html?cat=vodka" class="cat-item-pill"><img src="images/icons/vodka.svg" width="16" height="16"> Vodka</a>
+      <a href="shop.html?cat=wine" class="cat-item-pill"><img src="images/icons/wine.svg" width="16" height="16"> Wine</a>
+      <a href="shop.html?cat=energy-drink" class="cat-item-pill"><img src="images/icons/energy.svg" width="16" height="16"> Energy Drink</a>
+      <a href="shop.html?cat=soda-water" class="cat-item-pill"><img src="images/icons/soda.svg" width="16" height="16"> Soda & Water</a>
+      <a href="shop.html?cat=snacks" class="cat-item-pill"><img src="images/icons/snacks.svg" width="16" height="16"> Snacks</a>
+    </div>
+  </nav>
+
+  <!-- Shop Content -->
+  <div class="container">
+    <div class="shop-layout">
+      <!-- Sidebar Filters -->
+      <aside class="filters-sidebar">
+        <div class="filter-group">
+          <h4 class="filter-title">Categories</h4>
+          <ul class="filter-list" id="catFilterList">
+            <!-- Injected dynamically -->
+          </ul>
+        </div>
+
+        <div class="filter-group">
+          <h4 class="filter-title">Special Curations</h4>
+          <ul class="filter-list">
+            <li><button class="filter-btn" onclick="applyCuration('popular')">🔥 Popular Near You</button></li>
+            <li><button class="filter-btn" onclick="applyCuration('deals')">🏷️ Deals of the Day</button></li>
+            <li><button class="filter-btn" onclick="applyCuration('new')">✨ New Arrivals</button></li>
+          </ul>
+        </div>
+
+        <div class="filter-group">
+          <h4 class="filter-title">Delivery Guarantee</h4>
+          <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:8px; padding:12px; font-size:12px; color:#166534;">
+            <i class="fa-solid fa-bolt" style="color:#21a038;"></i> <strong>10-15 Mins</strong> chilled delivery to your doorstep in Lucknow.
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Products Grid -->
+      <main>
+        <div class="shop-header-bar">
+          <div>
+            <h2 id="currentCategoryHeading" style="font-size:20px; font-weight:800; text-transform:uppercase;">All Beverages & Snacks</h2>
+            <p id="productCountSubtitle" style="font-size:13px; color:#64748b;">Showing all 12 items</p>
+          </div>
+          <div>
+            <label style="font-size:13px; font-weight:600; color:#475569; margin-right:6px;">Sort by:</label>
+            <select class="sort-select" id="sortSelect" onchange="renderShopProducts()">
+              <option value="popular">Popularity</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="rating">Customer Rating</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="products-grid shop-grid-view" id="shopProductsGrid">
+          <!-- Dynamic products -->
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Cart Slide-Over Drawer -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <h3><i class="fa-solid fa-bag-shopping" style="color:var(--primary-green)"></i> Your Drinkit Cart</h3>
+      <button class="close-drawer-btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="cart-drawer-body" id="cartDrawerItems"></div>
+    <div class="cart-drawer-footer">
+      <div class="bill-row">
+        <span>Item Subtotal</span>
+        <span id="drawerSubtotal">₹0</span>
+      </div>
+      <div class="bill-row">
+        <span>Promo Discount</span>
+        <span id="drawerDiscount" style="color:var(--primary-green)">₹0</span>
+      </div>
+      <div class="bill-row">
+        <span>Delivery Fee (10 Mins)</span>
+        <span style="color:#16a34a; font-weight:700;">FREE</span>
+      </div>
+      <div class="bill-row total-row">
+        <span>To Pay</span>
+        <span id="drawerTotal">₹0</span>
+      </div>
+      <a href="checkout.html" class="checkout-action-btn" id="drawerCheckoutBtn">
+        Proceed to Checkout <i class="fa-solid fa-arrow-right"></i>
+      </a>
+      <a href="cart.html" style="display:block; text-align:center; font-size:12px; color:#64748b; margin-top:8px; font-weight:600;">
+        View Detailed Cart & Bill Breakdown
+      </a>
+    </div>
+  </div>
+
+  <!-- Mobile Bottom Nav -->
+  <div class="mobile-nav-bar">
+    <div class="mobile-nav-items">
+      <a href="index.html" class="mob-nav-btn"><i class="fa-solid fa-house"></i><span>Home</span></a>
+      <a href="shop.html" class="mob-nav-btn active"><i class="fa-solid fa-border-all"></i><span>Categories</span></a>
+      <a href="orders.html" class="mob-nav-btn"><i class="fa-solid fa-receipt"></i><span>Orders</span></a>
+      <a href="javascript:void(0)" class="mob-nav-btn open-cart-drawer"><i class="fa-solid fa-cart-shopping"></i><span class="mob-cart-badge">0</span><span>Cart</span></a>
+      <a href="profile.html" class="mob-nav-btn"><i class="fa-solid fa-user"></i><span>Profile</span></a>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    let activeCategory = 'all';
+    let searchQuery = '';
+    let curationFilter = '';
+
+    function initShop() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const catParam = urlParams.get('cat');
+      const searchParam = urlParams.get('search');
+      const filterParam = urlParams.get('filter');
+
+      if (catParam) activeCategory = catParam;
+      if (searchParam) {
+        searchQuery = searchParam;
+        document.getElementById('shopSearchInput').value = searchParam;
+      }
+      if (filterParam) curationFilter = filterParam;
+
+      renderCatSidebar();
+      renderShopProducts();
+    }
+
+    function renderCatSidebar() {
+      const list = document.getElementById('catFilterList');
+      if (!list) return;
+
+      let html = '';
+      DRINKIT_CATEGORIES.forEach(cat => {
+        const isActive = activeCategory === cat.id ? 'active' : '';
+        const iconTag = cat.iconSvg ? `<img src="${cat.iconSvg}" width="16" height="16" style="vertical-align:middle; margin-right:4px;">` : (cat.iconEmoji || '');
+        html += `
+          <li>
+            <button class="filter-btn ${isActive}" onclick="selectCategory('${cat.id}')">
+              <span>${iconTag} ${cat.name}</span>
+              <span style="font-size:11px; color:#94a3b8;">${cat.count || ''}</span>
+            </button>
+          </li>
+        `;
+      });
+      list.innerHTML = html;
+    }
+
+    function selectCategory(catId) {
+      activeCategory = catId;
+      searchQuery = '';
+      curationFilter = '';
+      document.getElementById('shopSearchInput').value = '';
+      renderCatSidebar();
+      renderShopProducts();
+    }
+
+    function applyCuration(type) {
+      curationFilter = type;
+      activeCategory = 'all';
+      renderCatSidebar();
+      renderShopProducts();
+    }
+
+    function filterBySearch() {
+      const val = document.getElementById('shopSearchInput').value.trim();
+      searchQuery = val;
+      activeCategory = 'all';
+      curationFilter = '';
+      renderShopProducts();
+    }
+
+    function renderShopProducts() {
+      const grid = document.getElementById('shopProductsGrid');
+      const heading = document.getElementById('currentCategoryHeading');
+      const countSub = document.getElementById('productCountSubtitle');
+      const sortVal = document.getElementById('sortSelect').value;
+
+      let filtered = [...DRINKIT_PRODUCTS];
+
+      if (activeCategory !== 'all') {
+        filtered = filtered.filter(p => p.category === activeCategory);
+        const catObj = DRINKIT_CATEGORIES.find(c => c.id === activeCategory);
+        heading.textContent = catObj ? `${catObj.name}` : 'Products';
+      } else if (curationFilter === 'popular') {
+        filtered = filtered.filter(p => p.isPopular);
+        heading.textContent = '🔥 Popular Near You';
+      } else if (curationFilter === 'deals') {
+        filtered = filtered.filter(p => p.isDeal);
+        heading.textContent = '🏷️ Deals of the Day';
+      } else if (curationFilter === 'new') {
+        filtered = filtered.filter(p => p.isNew);
+        heading.textContent = '✨ New Arrivals';
+      } else if (searchQuery) {
+        filtered = filtered.filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase()) || p.description.toLowerCase().includes(searchQuery.toLowerCase()));
+        heading.textContent = `Search results for "${searchQuery}"`;
+      } else {
+        heading.textContent = 'All Beverages & Snacks';
+      }
+
+      // Sorting
+      if (sortVal === 'price-low') {
+        filtered.sort((a, b) => a.price - b.price);
+      } else if (sortVal === 'price-high') {
+        filtered.sort((a, b) => b.price - a.price);
+      } else if (sortVal === 'rating') {
+        filtered.sort((a, b) => b.rating - a.rating);
+      }
+
+      countSub.textContent = `Showing ${filtered.length} products available for 10-minute delivery`;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color:#64748b;">
+            <div style="font-size: 52px; margin-bottom: 12px;">🔍</div>
+            <h3 style="font-size: 18px; color: #111; margin-bottom: 6px;">No products found</h3>
+            <p style="font-size: 13px;">Try searching for "Beer", "Whisky", "Wine" or "Chips"</p>
+            <button onclick="selectCategory('all')" style="margin-top:16px; background:#21a038; color:#fff; padding:8px 20px; border-radius:8px; font-weight:700;">Show All Products</button>
+          </div>
+        `;
+        return;
+      }
+
+      let html = '';
+      filtered.forEach(prod => {
+        const inCart = DRINKIT_APP.cart.find(c => c.id === prod.id);
+        const actionHtml = inCart ? `
+          <div class="qty-counter">
+            <button onclick="DRINKIT_APP.updateQuantity('${prod.id}', -1); renderShopProducts();">-</button>
+            <span class="qty-number">${inCart.qty}</span>
+            <button onclick="DRINKIT_APP.updateQuantity('${prod.id}', 1); renderShopProducts();">+</button>
+          </div>
+        ` : `
+          <button class="add-btn" onclick="DRINKIT_APP.addToCart('${prod.id}', 1); renderShopProducts();">
+            ADD <span style="font-size:16px; margin-left:2px;">+</span>
+          </button>
+        `;
+
+        html += `
+          <div class="product-card">
+            ${prod.isDeal ? '<span class="product-badge">DEAL</span>' : ''}
+            <div class="prod-img-box" onclick="window.location.href='product-detail.html?id=${prod.id}'">
+              <img src="${prod.image}" alt="${prod.name}" loading="lazy">
+            </div>
+            <div class="prod-title" onclick="window.location.href='product-detail.html?id=${prod.id}'">${prod.name}</div>
+            <div class="prod-volume">${prod.volume} • ${prod.alcoholPercentage} ABV</div>
+            <div class="prod-footer">
+              <div class="prod-price">₹${prod.price} <span class="original">₹${prod.originalPrice}</span></div>
+              ${actionHtml}
+            </div>
+          </div>
+        `;
+      });
+
+      grid.innerHTML = html;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initShop();
+    });
+  </script>
+</body>
+</html>

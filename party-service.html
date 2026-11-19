@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>House Party Catering & Butler - DRINKIT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .party-hero {
+      background: linear-gradient(135deg, #0f1c14 0%, #1a3222 100%);
+      color: #fff;
+      padding: 60px 0;
+      text-align: center;
+      position: relative;
+    }
+    .party-title {
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+    .party-title span {
+      color: var(--accent-lime);
+    }
+    .package-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 40px 0;
+    }
+    .party-card {
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .party-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary-green);
+    }
+    .party-img-box {
+      height: 200px;
+      overflow: hidden;
+    }
+    .party-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .party-card:hover .party-img-box img {
+      transform: scale(1.08);
+    }
+    .party-card-body {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .party-pkg-price {
+      font-size: 24px;
+      font-weight: 900;
+      color: #111;
+      margin: 12px 0 16px;
+    }
+    .party-features-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #475569;
+      margin-bottom: 8px;
+    }
+    .book-pkg-btn {
+      margin-top: auto;
+      background: var(--primary-green);
+      color: #fff;
+      font-weight: 800;
+      padding: 12px;
+      border-radius: var(--radius-md);
+      text-align: center;
+      font-size: 14px;
+    }
+    .book-pkg-btn:hover {
+      background: var(--primary-green-hover);
+    }
+    @media (max-width: 900px) {
+      .package-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Dark Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-left open-location-modal">
+        <i class="fa-solid fa-location-dot loc-icon"></i>
+        <span>Delivering to <strong class="location-text"><span class="active-loc-name">Lucknow, Uttar Pradesh</span></strong></span>
+      </div>
+      <div class="top-bar-center">
+        <i class="fa-solid fa-bolt"></i>
+        <span>Party Packages Delivered Chilled in 15 Mins</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="index.html">Back to Store</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-text">DRINKIT<span>.</span></div>
+        <div class="logo-sub">Drinks • Snacks • Party</div>
+      </a>
+      <div class="header-actions">
+        <a href="shop.html" class="header-action-btn">Shop Drinks</a>
+        <button class="cart-btn open-cart-drawer">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span>Cart</span>
+          <span class="cart-badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="party-hero">
+    <div class="container">
+      <div style="display:inline-block; background:rgba(163,230,53,0.2); border:1px solid #a3e635; color:#a3e635; padding:4px 14px; border-radius:50px; font-size:12px; font-weight:800; text-transform:uppercase; margin-bottom:12px;">
+        🥂 Complete House Party Concierge
+      </div>
+      <h1 class="party-title">HOUSE PARTY?<br><span>We Arrange. You Party.</span></h1>
+      <p style="font-size:16px; color:#cbd5e1; max-width:600px; margin:0 auto;">
+        From chilled beer kegs, premium scotch, cocktail garnishes, crystal glassware to certified bartenders. Delivered straight to your venue in Lucknow.
+      </p>
+    </div>
+  </section>
+
+  <!-- Packages -->
+  <div class="container" style="padding-bottom: 60px;">
+    <div class="package-grid">
+      <!-- Package 1: The Chiller -->
+      <div class="party-card">
+        <div class="party-img-box">
+          <img src="https://images.unsplash.com/photo-1575037614876-c38a4d44f5b8?w=500&auto=format&fit=crop&q=80" alt="Chiller Beer Bash">
+        </div>
+        <div class="party-card-body">
+          <span style="font-size:11px; font-weight:800; color:var(--primary-green); text-transform:uppercase;">6 to 10 Guests</span>
+          <h3 style="font-size:20px; font-weight:800; margin-top:4px;">The Weekend Chiller</h3>
+          <p style="font-size:13px; color:#64748b; margin-top:4px;">Perfect for sports match screenings and casual rooftop hangouts.</p>
+          <div class="party-pkg-price">₹3,499 <span style="font-size:13px; color:#94a3b8; font-weight:500;">/ package</span></div>
+          <ul class="party-features-list">
+            <li><i class="fa-solid fa-check" style="color:var(--primary-green)"></i> 12x Chilled Premium Beers (Budweiser/KF)</li>
+            <li><i class="fa-solid fa-check" style="color:var(--primary-green)"></i> 2x 2kg Solid Clean Ice Cubes Bags</li>
+            <li><i class="fa-solid fa-check" style="color:var(--primary-green)"></i> 4x Assorted Gourmet Chips & Dips</li>
+            <li><i class="fa-solid fa-check" style="color:var(--primary-green)"></i> Red Party Cups & Bottle Opener</li>
+          </ul>
+          <button class="book-pkg-btn" onclick="addPartyPackageToCart('The Weekend Chiller', 3499)">
+            Add Package to Cart
+          </button>
+        </div>
+      </div>
+
+      <!-- Package 2: Cocktail Maestro -->
+      <div class="party-card" style="border:2px solid var(--primary-green);">
+        <div class="party-img-box">
+          <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500&auto=format&fit=crop&q=80" alt="Cocktail Maestro">
+        </div>
+        <div class="party-card-body">
+          <span style="font-size:11px; font-weight:800; background:#21a038; color:#fff; padding:2px 8px; border-radius:4px; display:inline-block; width:fit-content; margin-bottom:4px;">MOST POPULAR</span>
+          <h3 style="font-size:20px; font-weight:800;">The Cocktail Maestro</h3>
+          <p style="font-size:13px; color:#64748b; margin-top:4px;">Craft bar setup with imported spirits, garnishes and tonic waters.</p>
+          <div class="party-pkg-price">₹6,999 <span style="font-size:13px; color:#94a3b8; font-weight:500;">/ package</span></div>
+          <ul class="party-features-list">
+            <li><i class="fa-solid fa-check" style="color:var(--primary-green)"></i> 1x Absolut Swedish Vodka (750ml)</li>
+            <li><i class="fa-solid fa-check" style="color:var(--primary-green)"></i> 1x Bombay Sapphire London Gin (750ml)</li>
+            <li><i class="fa-solid fa-check" style="color:var(--primary-green)"></i> 6x Premium Tonic Waters & Club Sodas</li>
+            <li><i class="fa-solid fa-check" style="color:var(--primary-green)"></i> Fresh mint, lime wheels, bar shaker set</li>
+            <li><i class="fa-solid fa-check" style="color:var(--primary-green)"></i> 4kg Triple-Filtered Ice Cubes</li>
+          </ul>
+          <button class="book-pkg-btn" onclick="addPartyPackageToCart('The Cocktail Maestro', 6999)">
+            Add Package to Cart
+          </button>
+        </div>
+      </div>
+
+      <!-- Package 3: Scotch & Cigar Lounge -->
+      <div class="party-card">
+        <div class="party-img-box">
+          <img src="https://images.unsplash.com/photo-1527281400683-1aae777175f8?w=500&auto=format&fit=crop&q=80" alt="Scotch Lounge">
+        </div>
+        <div class="party-card-body">
+          <span style="font-size:11px; font-weight:800; color:#d97706; text-transform:uppercase;">VIP Luxury</span>
+          <h3 style="font-size:20px; font-weight:800; margin-top:4px;">Scotch & Gent's Lounge</h3>
+          <p style="font-size:13px; color:#64748b; margin-top:4px;">Refined evening setup with aged scotches and premium snacks.</p>
+          <div class="party-pkg-price">₹9,499 <span style="font-size:13px; color:#94a3b8; font-weight:500;">/ package</span></div>
+          <ul class="party-features-list">
+            <li><i class="fa-solid fa-check" style="color:var(--primary-green)"></i> 2x Johnnie Walker Black Label 12 YO (750ml)</li>
+            <li><i class="fa-solid fa-check" style="color:var(--primary-green)"></i> Heavy Crystal Old Fashioned Tumblers (Set of 6)</li>
+            <li><i class="fa-solid fa-check" style="color:var(--primary-green)"></i> Slow-melting 2-inch sphere ice balls</li>
+            <li><i class="fa-solid fa-check" style="color:var(--primary-green)"></i> Roasted Almonds, Cashews & Smoked Pretzels</li>
+          </ul>
+          <button class="book-pkg-btn" onclick="addPartyPackageToCart('Scotch & Gent Lounge', 9499)">
+            Add Package to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Drawer -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <h3><i class="fa-solid fa-bag-shopping" style="color:var(--primary-green)"></i> Your Drinkit Cart</h3>
+      <button class="close-drawer-btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="cart-drawer-body" id="cartDrawerItems"></div>
+    <div class="cart-drawer-footer">
+      <div class="bill-row"><span>Item Subtotal</span><span id="drawerSubtotal">₹0</span></div>
+      <div class="bill-row total-row"><span>To Pay</span><span id="drawerTotal">₹0</span></div>
+      <a href="checkout.html" class="checkout-action-btn" id="drawerCheckoutBtn">Proceed to Checkout</a>
+    </div>
+  </div>
+
+  <!-- Mobile Bottom Nav -->
+  <div class="mobile-nav-bar">
+    <div class="mobile-nav-items">
+      <a href="index.html" class="mob-nav-btn"><i class="fa-solid fa-house"></i><span>Home</span></a>
+      <a href="shop.html" class="mob-nav-btn"><i class="fa-solid fa-border-all"></i><span>Categories</span></a>
+      <a href="orders.html" class="mob-nav-btn"><i class="fa-solid fa-receipt"></i><span>Orders</span></a>
+      <a href="party-service.html" class="mob-nav-btn active"><i class="fa-solid fa-champagne-glasses"></i><span>Party</span></a>
+      <a href="profile.html" class="mob-nav-btn"><i class="fa-solid fa-user"></i><span>Profile</span></a>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    function addPartyPackageToCart(pkgName, price) {
+      DRINKIT_APP.cart.push({
+        id: 'pkg-' + Date.now(),
+        name: pkgName,
+        price: price,
+        volume: 'Full Party Kit',
+        image: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500&auto=format&fit=crop&q=80',
+        qty: 1
+      });
+      DRINKIT_APP.saveState();
+      DRINKIT_APP.showToast(`Added ${pkgName} to your cart!`);
+      DRINKIT_APP.toggleCartDrawer(true);
+    }
+  </script>
+</body>
+</html>

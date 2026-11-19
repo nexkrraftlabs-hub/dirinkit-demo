@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Order Tracking - DRINKIT 10 Mins Delivery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .tracking-layout {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 30px;
+      padding: 30px 0 60px;
+    }
+    .track-box {
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .eta-header-card {
+      background: linear-gradient(135deg, #122319 0%, #1e3828 100%);
+      color: #fff;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .eta-time {
+      font-size: 38px;
+      font-weight: 900;
+      color: var(--accent-lime);
+      font-family: monospace;
+      letter-spacing: -1px;
+    }
+    .map-container-box {
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+      background: #f8fafc;
+      margin-bottom: 20px;
+    }
+    .map-canvas {
+      display: block;
+      width: 100%;
+      height: 260px;
+    }
+    /* Stepper */
+    .timeline-stepper {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      margin: 30px 0 20px;
+    }
+    .timeline-stepper::before {
+      content: '';
+      position: absolute;
+      top: 15px;
+      left: 20px;
+      right: 20px;
+      height: 3px;
+      background: #e2e8f0;
+      z-index: 1;
+    }
+    .step-item {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 80px;
+    }
+    .step-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-full);
+      background: #fff;
+      border: 3px solid #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 8px;
+      transition: var(--transition);
+    }
+    .step-item.completed .step-dot {
+      background: var(--primary-green);
+      border-color: var(--primary-green);
+      color: #fff;
+    }
+    .step-item.active .step-dot {
+      border-color: var(--primary-green);
+      color: var(--primary-green);
+      animation: pulseGreen 1.5s infinite;
+    }
+    @keyframes pulseGreen {
+      0% { box-shadow: 0 0 0 0 rgba(33, 160, 56, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(33, 160, 56, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(33, 160, 56, 0); }
+    }
+    .step-title-lbl {
+      font-size: 11px;
+      font-weight: 700;
+      color: #334155;
+    }
+    .rider-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-top: 20px;
+    }
+    .rider-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .rider-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-full);
+      object-fit: cover;
+      border: 2px solid var(--primary-green);
+    }
+    .rider-name {
+      font-size: 15px;
+      font-weight: 800;
+      color: #111;
+    }
+    .rider-vehicle {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+    .rider-actions {
+      display: flex;
+      gap: 10px;
+    }
+    .rider-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-full);
+      background: #fff;
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #111;
+      font-size: 15px;
+      box-shadow: var(--shadow-sm);
+    }
+    .rider-btn.call-btn {
+      background: var(--primary-green);
+      color: #fff;
+      border-color: var(--primary-green);
+    }
+    .otp-banner {
+      background: #fefce8;
+      border: 1px dashed #f59e0b;
+      border-radius: var(--radius-md);
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+    }
+    .otp-code {
+      font-family: monospace;
+      font-size: 24px;
+      font-weight: 900;
+      color: #b45309;
+      letter-spacing: 3px;
+    }
+    @media (max-width: 900px) {
+      .tracking-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Dark Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-left">
+        <i class="fa-solid fa-bolt" style="color:var(--accent-lime);"></i>
+        <span>Live Dispatch: Dark Store Gomti Nagar Hub</span>
+      </div>
+      <div class="top-bar-center">
+        <span>Order Status: <strong id="deliveryStatusBadge" style="background:#21a038; color:#fff; padding:2px 8px; border-radius:4px;">Out for Delivery</strong></span>
+      </div>
+      <div class="top-bar-right">
+        <a href="orders.html"><i class="fa-solid fa-receipt"></i> All Orders</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-text">DRINKIT<span>.</span></div>
+        <div class="logo-sub">Drinks • Snacks • Party</div>
+      </a>
+      <div style="font-size:14px; font-weight:700; color:#14532d;">
+        <i class="fa-solid fa-satellite-dish" style="color:var(--primary-green); margin-right:6px;"></i> Live GPS Tracking Active
+      </div>
+      <a href="index.html" class="header-action-btn">
+        <i class="fa-solid fa-house"></i> Home
+      </a>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="tracking-layout">
+      <!-- Left Column: Map & Stepper -->
+      <div>
+        <!-- ETA Card -->
+        <div class="eta-header-card">
+          <div>
+            <div style="font-size:12px; text-transform:uppercase; font-weight:700; color:#a3e635; letter-spacing:1px; margin-bottom:4px;">
+              ⚡ ESTIMATED ARRIVAL
+            </div>
+            <h2 style="font-size:22px; font-weight:800;">Chilled Drinks on the Way!</h2>
+            <p style="font-size:13px; color:#cbd5e1; margin-top:2px;">Rider Ramesh has picked up your order and is en route.</p>
+          </div>
+          <div style="text-align:right;">
+            <div class="eta-time" id="liveTimerCountdown">08:00</div>
+            <div style="font-size:12px; color:#cbd5e1;">Minutes Left</div>
+          </div>
+        </div>
+
+        <!-- Simulated Live Canvas Map -->
+        <div class="map-container-box">
+          <canvas id="trackingCanvasMap" class="map-canvas"></canvas>
+          <div style="position:absolute; bottom:10px; right:12px; background:rgba(255,255,255,0.9); padding:4px 10px; border-radius:4px; font-size:11px; font-weight:700; color:#334155;">
+            <i class="fa-solid fa-circle" style="color:#21a038; font-size:8px;"></i> LIVE GPS
+          </div>
+        </div>
+
+        <!-- Timeline Stepper -->
+        <div class="track-box">
+          <div style="font-size:14px; font-weight:800; text-transform:uppercase; color:#111;">Order Progress</div>
+          <div class="timeline-stepper">
+            <div class="step-item completed">
+              <div class="step-dot"><i class="fa-solid fa-check"></i></div>
+              <span class="step-title-lbl">Order Placed</span>
+            </div>
+            <div class="step-item completed">
+              <div class="step-dot"><i class="fa-solid fa-check"></i></div>
+              <span class="step-title-lbl">Chilled & Packed</span>
+            </div>
+            <div class="step-item active" id="step-node-3">
+              <div class="step-dot"><i class="fa-solid fa-motorcycle"></i></div>
+              <span class="step-title-lbl">Out for Delivery</span>
+            </div>
+            <div class="step-item" id="step-node-4">
+              <div class="step-dot"><i class="fa-solid fa-house-chimney"></i></div>
+              <span class="step-title-lbl">Delivered</span>
+            </div>
+          </div>
+
+          <!-- Delivery Partner Profile -->
+          <div class="rider-card">
+            <div class="rider-left">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80" alt="Ramesh Verma" class="rider-avatar">
+              <div>
+                <div class="rider-name">Ramesh Verma <span style="font-size:12px; color:#16a34a; font-weight:700;"><i class="fa-solid fa-star"></i> 4.9</span></div>
+                <div class="rider-vehicle">Hero Electric Splendor • UP 32 AB 4589</div>
+                <div style="font-size:11px; color:#16a34a; font-weight:700; margin-top:2px;">Vaccinated • Thermal Bag Equipped</div>
+              </div>
+            </div>
+            <div class="rider-actions">
+              <button class="rider-btn call-btn" onclick="alert('Calling rider Ramesh Verma at +91 98765 43210...')"><i class="fa-solid fa-phone"></i></button>
+              <button class="rider-btn" onclick="alert('Chat with rider: Ramesh says: I am just crossing the main chowk, arriving in 5 mins!')"><i class="fa-solid fa-message"></i></button>
+            </div>
+          </div>
+
+          <!-- Delivery Verification OTP -->
+          <div class="otp-banner">
+            <div>
+              <div style="font-size:12px; font-weight:700; color:#92400e; text-transform:uppercase;">Delivery Verification OTP</div>
+              <div style="font-size:12px; color:#78350f;">Share this 4-digit code with the rider only after receiving your package.</div>
+            </div>
+            <div class="otp-code" id="deliveryOtpDisplay">4892</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Order Details -->
+      <div>
+        <div class="track-box">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+            <div style="font-size:16px; font-weight:800; color:#111;">Order Details</div>
+            <span style="font-size:12px; font-family:monospace; background:#f1f5f9; padding:4px 8px; border-radius:4px; font-weight:700;" id="trackOrderId">DRK-98421</span>
+          </div>
+
+          <div style="font-size:13px; color:#64748b; margin-bottom:14px;">
+            <strong>Delivering to:</strong>
+            <p id="trackDeliveryAddress" style="color:#1e293b; margin-top:2px;">Flat 402, Gomti Nagar Phase 2, Lucknow - 226010</p>
+          </div>
+
+          <div style="font-size:13px; font-weight:700; margin-bottom:10px;">Items in this order:</div>
+          <div id="trackItemsList" style="margin-bottom:16px;">
+            <!-- Rendered by JS -->
+          </div>
+
+          <div style="border-top:1px dashed #e2e8f0; padding-top:14px;">
+            <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:6px; color:#64748b;">
+              <span>Payment Mode</span>
+              <span style="font-weight:700; color:#111;">UPI (Paid Online)</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:6px; color:#64748b;">
+              <span>Delivery Time</span>
+              <span style="font-weight:700; color:#16a34a;">Superfast 10 Mins</span>
+            </div>
+          </div>
+
+          <div style="margin-top:20px; display:flex; gap:10px;">
+            <button onclick="window.location.href='orders.html'" style="flex:1; border:1px solid var(--border-color); padding:10px; border-radius:8px; font-weight:700; font-size:13px;">View All Orders</button>
+            <button onclick="window.location.href='index.html'" style="flex:1; background:var(--primary-green); color:#fff; padding:10px; border-radius:8px; font-weight:700; font-size:13px;">Back to Home</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Bottom Nav -->
+  <div class="mobile-nav-bar">
+    <div class="mobile-nav-items">
+      <a href="index.html" class="mob-nav-btn"><i class="fa-solid fa-house"></i><span>Home</span></a>
+      <a href="shop.html" class="mob-nav-btn"><i class="fa-solid fa-border-all"></i><span>Categories</span></a>
+      <a href="orders.html" class="mob-nav-btn"><i class="fa-solid fa-receipt"></i><span>Orders</span></a>
+      <a href="order-tracking.html" class="mob-nav-btn active"><i class="fa-solid fa-location-crosshairs"></i><span>Track</span></a>
+      <a href="profile.html" class="mob-nav-btn"><i class="fa-solid fa-user"></i><span>Profile</span></a>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/tracking.js"></script>
+</body>
+</html>

@@ -1,0 +1,700 @@
+/* ==========================================================================
+   DRINKIT - Ultra-Polished Mobile & Tablet Responsive Stylesheet
+   Designed for iPhone, Android, Tablets, and all Mobile Screens (320px - 1024px)
+   ========================================================================== */
+
+/* By default on Desktop and Laptop screens: completely hidden */
+.mobile-nav-bar {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   1. GLOBAL MOBILE RESETS & BOTTOM NAV (ONLY for Mobile Screens <= 768px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  :root {
+    --radius-lg: 12px;
+  }
+
+  body {
+    padding-bottom: 76px !important; /* Space for sticky bottom navigation */
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .container {
+    padding: 0 12px;
+  }
+
+  /* Fixed Mobile Bottom Navigation Bar (App Experience) */
+  .mobile-nav-bar {
+    display: block !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid #e2e8f0;
+    padding: 6px 8px calc(6px + env(safe-area-inset-bottom, 0px));
+    z-index: 900;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  .mobile-nav-items {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .mob-nav-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #64748b;
+    position: relative;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    min-width: 58px;
+  }
+
+  .mob-nav-btn.active,
+  .mob-nav-btn:hover {
+    color: var(--primary-green);
+  }
+
+  .mob-nav-btn i {
+    font-size: 19px;
+  }
+
+  .mob-cart-badge {
+    position: absolute;
+    top: 2px;
+    right: 12px;
+    background: #ef4444;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 800;
+    min-width: 16px;
+    height: 16px;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    border: 2px solid #fff;
+  }
+
+  /* --------------------------------------------------------------------------
+     2. HEADER & SEARCH RESPONSIVE (MOBILE)
+     -------------------------------------------------------------------------- */
+  .top-bar {
+    padding: 6px 0;
+    font-size: 11px;
+  }
+
+  .top-bar .container {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 8px;
+  }
+
+  .top-bar-right {
+    display: none !important;
+  }
+
+  .top-bar-left {
+    width: auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    justify-content: flex-start !important;
+    font-size: 11.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .top-bar-left img {
+    flex-shrink: 0;
+  }
+
+  .top-bar-left .location-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .top-bar-center {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--accent-lime);
+    background: rgba(163, 230, 53, 0.15);
+    padding: 2px 7px;
+    border-radius: 9999px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .top-bar-center img {
+    width: 12px;
+    height: 12px;
+  }
+
+  .main-header {
+    top: 0;
+  }
+
+  .header-container {
+    flex-wrap: wrap;
+    padding: 8px 12px;
+    gap: 10px;
+  }
+
+  .brand-logo .logo-text {
+    font-size: 22px;
+  }
+
+  .brand-logo .logo-sub {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .header-actions .offers-btn,
+  .header-actions .account-wrapper {
+    display: none !important; /* Moved to bottom navigation */
+  }
+
+  .cart-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .header-search {
+    order: 3;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 2px;
+  }
+
+  .search-wrapper {
+    padding: 2px 14px;
+  }
+
+  .search-input {
+    font-size: 13px;
+    padding: 8px 6px;
+  }
+
+  /* --------------------------------------------------------------------------
+     3. CATEGORY HORIZONTAL SCROLL STRIP
+     -------------------------------------------------------------------------- */
+  .category-strip {
+    border-bottom: 1px solid #f1f5f9;
+    background: #fff;
+    position: sticky;
+    top: 96px;
+    z-index: 80;
+  }
+
+  .cat-strip-container {
+    padding: 8px 12px;
+    gap: 6px;
+    justify-content: flex-start;
+  }
+
+  .cat-item-pill {
+    padding: 5px 11px;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  .cat-svg-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* --------------------------------------------------------------------------
+     4. HERO BANNER RESPONSIVE
+     -------------------------------------------------------------------------- */
+  .hero-section {
+    padding: 12px 0 8px;
+  }
+
+  .hero-banner {
+    min-height: auto;
+    flex-direction: column;
+    padding: 24px 16px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-generated-banner {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 320px;
+    height: 190px !important;
+    margin: 12px auto 0 !important;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    object-fit: contain !important;
+    z-index: 2 !important;
+  }
+
+  .hero-content {
+    padding: 0;
+    max-width: 100%;
+    margin-bottom: 6px;
+  }
+
+  .hero-tag {
+    font-size: 10px;
+    padding: 4px 10px;
+    margin-bottom: 12px;
+  }
+
+  .hero-title {
+    font-size: 26px;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+
+  .hero-sub {
+    font-size: 14px;
+    margin-bottom: 18px;
+  }
+
+  .hero-btn {
+    font-size: 13px;
+    padding: 11px 26px;
+  }
+
+  .carousel-arrow {
+    display: none !important; /* Swiping/dots on mobile */
+  }
+
+  /* --------------------------------------------------------------------------
+     5. TRUST BADGES (2x2 GRID ON MOBILE)
+     -------------------------------------------------------------------------- */
+  .trust-strip {
+    padding: 12px 0 20px;
+  }
+
+  .trust-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  .trust-card {
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .trust-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .trust-icon img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .trust-info h4 {
+    font-size: 12px;
+  }
+
+  .trust-info p {
+    font-size: 10px;
+  }
+
+  /* --------------------------------------------------------------------------
+     6. SHOP BY CATEGORY (4x2 GRID ON MOBILE)
+     -------------------------------------------------------------------------- */
+  .section-header {
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-size: 16px;
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  .category-card {
+    padding: 10px 4px;
+  }
+
+  .cat-img-box {
+    width: 100%;
+    height: 65px;
+    margin-bottom: 6px;
+  }
+
+  .cat-img-box img {
+    max-height: 58px;
+    max-width: 58px;
+  }
+
+  .cat-name {
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  /* --------------------------------------------------------------------------
+     7. PROMOTIONAL BANNERS (VERTICAL STACK ON MOBILE)
+     -------------------------------------------------------------------------- */
+  .promo-banners-section {
+    padding-bottom: 24px;
+  }
+
+  .promo-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .promo-card {
+    min-height: 140px;
+    padding: 18px;
+  }
+
+  .promo-heading {
+    font-size: 18px !important;
+  }
+
+  .promo-sub {
+    font-size: 12px !important;
+  }
+
+  .house-party-bg {
+    width: 45%;
+    opacity: 0.35;
+  }
+
+  /* --------------------------------------------------------------------------
+     8. POPULAR NEAR YOU / PRODUCT CARDS (2 COLUMNS MOBILE)
+     -------------------------------------------------------------------------- */
+  .popular-section {
+    padding-bottom: 24px;
+  }
+
+  .products-grid,
+  .shop-grid-view {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  .product-card {
+    padding: 10px;
+  }
+
+  .prod-img-box {
+    height: 125px;
+    margin-bottom: 8px;
+  }
+
+  .prod-img-box img {
+    max-height: 115px;
+    max-width: 100px;
+  }
+
+  .prod-title {
+    font-size: 12px;
+    min-height: 32px;
+    line-height: 1.25;
+  }
+
+  .prod-volume {
+    font-size: 11px;
+    margin-bottom: 8px;
+  }
+
+  .prod-price {
+    font-size: 14px;
+  }
+
+  .prod-price .original {
+    font-size: 10px;
+  }
+
+  .add-btn {
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 800;
+  }
+
+  .qty-counter {
+    font-size: 11px;
+  }
+
+  .qty-counter button {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  /* --------------------------------------------------------------------------
+     9. COUPON & PAYMENT STRIP (MOBILE)
+     -------------------------------------------------------------------------- */
+  .coupon-strip {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .coupon-left {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .coupon-text {
+    font-size: 13px;
+  }
+
+  .coupon-code {
+    font-size: 12px;
+    margin-left: 2px;
+  }
+
+  .coupon-btn {
+    width: 100%;
+    padding: 9px 16px;
+    font-size: 12px;
+  }
+
+  .payment-trust-card {
+    grid-template-columns: 1fr !important;
+    padding: 14px;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .pt-item {
+    justify-content: center !important;
+  }
+
+  .pt-payment-logos {
+    flex-wrap: wrap;
+  }
+
+  /* --------------------------------------------------------------------------
+     10. APP DOWNLOAD & FOOTER (MOBILE)
+     -------------------------------------------------------------------------- */
+  .app-newsletter-grid {
+    grid-template-columns: 1fr !important;
+    padding: 18px 14px;
+    gap: 18px;
+  }
+
+  .app-stores-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+  }
+
+  .newsletter-btn {
+    width: 100%;
+  }
+
+  .site-footer {
+    padding-top: 36px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 22px;
+  }
+
+  .footer-bottom-container {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .security-badges {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  /* --------------------------------------------------------------------------
+     11. CART DRAWER AS BOTTOM-SHEET ON MOBILE
+     -------------------------------------------------------------------------- */
+  .cart-drawer {
+    width: 100% !important;
+    max-width: 100vw !important;
+    right: -100vw !important;
+  }
+
+  .cart-drawer.active {
+    right: 0 !important;
+  }
+
+  /* --------------------------------------------------------------------------
+     12. OTHER PAGES MOBILE TWEAKS (PDP, CART, CHECKOUT, TRACKING)
+     -------------------------------------------------------------------------- */
+  .pdp-grid {
+    grid-template-columns: 1fr !important;
+    padding: 16px !important;
+    gap: 20px !important;
+  }
+
+  .pdp-container {
+    padding: 14px 10px 40px !important;
+  }
+
+  .main-image-stage {
+    height: 240px !important;
+    padding: 12px !important;
+  }
+
+  .main-image-stage img {
+    max-height: 220px !important;
+  }
+
+  .pdp-title {
+    font-size: 20px !important;
+  }
+
+  .pdp-current-price {
+    font-size: 24px !important;
+  }
+
+  .pdp-actions-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .spec-grid {
+    gap: 8px !important;
+  }
+
+  .spec-box {
+    padding: 6px !important;
+  }
+
+  .cart-page-layout,
+  .checkout-layout,
+  .tracking-layout {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    padding: 16px 0 40px !important;
+  }
+
+  .cart-box,
+  .checkout-card,
+  .track-box {
+    padding: 16px 14px !important;
+    border-radius: 12px !important;
+  }
+
+  .cpi-img {
+    width: 55px !important;
+    height: 55px !important;
+  }
+
+  .tip-options {
+    gap: 6px !important;
+  }
+
+  .tip-btn {
+    padding: 6px 4px !important;
+    font-size: 12px !important;
+  }
+
+  .eta-header-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .eta-time {
+    font-size: 32px !important;
+  }
+
+  .timeline-stepper {
+    margin: 20px 0 14px;
+  }
+
+  .step-title-lbl {
+    font-size: 9px !important;
+  }
+
+  .orders-page-container {
+    margin: 16px auto 40px !important;
+    padding: 0 12px !important;
+  }
+
+  .order-card {
+    padding: 16px 14px !important;
+  }
+
+  .order-footer-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+
+  .order-actions-btns {
+    width: 100% !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+  }
+
+  .order-actions-btns button,
+  .order-actions-btns a {
+    flex: 1 !important;
+    text-align: center !important;
+    padding: 7px 8px !important;
+    font-size: 12px !important;
+  }
+
+  .profile-header-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 16px;
+  }
+
+  .wallet-strip,
+  .address-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   13. TABLETS (769px - 1024px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .trust-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .category-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .hero-generated-banner {
+    width: 50% !important;
+  }
+}

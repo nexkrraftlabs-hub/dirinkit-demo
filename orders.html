@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Orders - DRINKIT 10 Mins Delivery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .orders-page-container {
+      max-width: 860px;
+      margin: 30px auto 60px;
+      padding: 0 16px;
+    }
+    .order-card {
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .order-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+    .order-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #f1f5f9;
+      margin-bottom: 16px;
+    }
+    .order-meta h3 {
+      font-size: 16px;
+      font-weight: 800;
+      color: #111;
+    }
+    .order-date {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+    .status-pill {
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .status-delivered {
+      background: #dcfce7;
+      color: #15803d;
+    }
+    .status-active {
+      background: #fef3c7;
+      color: #b45309;
+      animation: pulse 1.5s infinite;
+    }
+    .order-item-list {
+      margin-bottom: 16px;
+    }
+    .order-prod-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      font-size: 14px;
+    }
+    .order-footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #f1f5f9;
+      padding-top: 16px;
+    }
+    .order-total-price {
+      font-size: 16px;
+      font-weight: 900;
+      color: #111;
+    }
+    .order-actions-btns {
+      display: flex;
+      gap: 10px;
+    }
+    .btn-reorder {
+      background: var(--primary-green-light);
+      color: var(--primary-green-hover);
+      border: 1px solid #bbf7d0;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+    }
+    .btn-reorder:hover {
+      background: var(--primary-green);
+      color: #fff;
+    }
+    .btn-invoice {
+      border: 1px solid var(--border-color);
+      color: #475569;
+      font-weight: 600;
+      font-size: 13px;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+    }
+    .btn-invoice:hover {
+      background: #f8fafc;
+      color: #111;
+    }
+    .btn-track {
+      background: var(--primary-green);
+      color: #fff;
+      font-weight: 800;
+      font-size: 13px;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Dark Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-left open-location-modal">
+        <i class="fa-solid fa-location-dot loc-icon"></i>
+        <span>Delivering to <strong class="location-text"><span class="active-loc-name">Lucknow, Uttar Pradesh</span></strong></span>
+      </div>
+      <div class="top-bar-center">
+        <i class="fa-solid fa-bolt"></i>
+        <span>10 Mins Delivery</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="index.html#downloadApp"><i class="fa-solid fa-mobile-screen"></i> Download App</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-text">DRINKIT<span>.</span></div>
+        <div class="logo-sub">Drinks • Snacks • Party</div>
+      </a>
+      <div class="header-search">
+        <div class="search-wrapper">
+          <input type="text" class="search-input" placeholder="Search for drinks, snacks and more...">
+          <button class="search-icon-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="shop.html" class="header-action-btn">
+          <i class="fa-solid fa-plus"></i> Shop More
+        </a>
+        <button class="cart-btn open-cart-drawer">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span>Cart</span>
+          <span class="cart-badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Orders Container -->
+  <div class="orders-page-container">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+      <div>
+        <h1 style="font-size:24px; font-weight:900; color:#111;">My Orders</h1>
+        <p style="font-size:13px; color:#64748b;">View, track and reorder your past drink deliveries</p>
+      </div>
+      <a href="shop.html" style="background:var(--primary-green); color:#fff; font-weight:700; font-size:13px; padding:8px 16px; border-radius:8px;">
+        Order Drinks Now
+      </a>
+    </div>
+
+    <!-- Active live order alert banner if any -->
+    <div id="activeOrderAlertBanner"></div>
+
+    <!-- Orders list container -->
+    <div id="ordersListContainer">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+
+  <!-- Cart Drawer -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <h3><i class="fa-solid fa-bag-shopping" style="color:var(--primary-green)"></i> Your Drinkit Cart</h3>
+      <button class="close-drawer-btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="cart-drawer-body" id="cartDrawerItems"></div>
+    <div class="cart-drawer-footer">
+      <div class="bill-row"><span>Item Subtotal</span><span id="drawerSubtotal">₹0</span></div>
+      <div class="bill-row total-row"><span>To Pay</span><span id="drawerTotal">₹0</span></div>
+      <a href="checkout.html" class="checkout-action-btn" id="drawerCheckoutBtn">Proceed to Checkout</a>
+    </div>
+  </div>
+
+  <!-- Mobile Bottom Nav -->
+  <div class="mobile-nav-bar">
+    <div class="mobile-nav-items">
+      <a href="index.html" class="mob-nav-btn"><i class="fa-solid fa-house"></i><span>Home</span></a>
+      <a href="shop.html" class="mob-nav-btn"><i class="fa-solid fa-border-all"></i><span>Categories</span></a>
+      <a href="orders.html" class="mob-nav-btn active"><i class="fa-solid fa-receipt"></i><span>Orders</span></a>
+      <a href="javascript:void(0)" class="mob-nav-btn open-cart-drawer"><i class="fa-solid fa-cart-shopping"></i><span class="mob-cart-badge">0</span><span>Cart</span></a>
+      <a href="profile.html" class="mob-nav-btn"><i class="fa-solid fa-user"></i><span>Profile</span></a>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    function renderOrdersPage() {
+      const container = document.getElementById('ordersListContainer');
+      const banner = document.getElementById('activeOrderAlertBanner');
+
+      // Check active order
+      const activeOrderStr = localStorage.getItem('drinkit_active_order');
+      if (activeOrderStr) {
+        try {
+          const actOrder = JSON.parse(activeOrderStr);
+          banner.innerHTML = `
+            <div style="background:linear-gradient(135deg, #122319, #1e3828); color:#fff; border-radius:12px; padding:18px 22px; margin-bottom:24px; display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <span style="background:#21a038; color:#fff; font-size:10px; font-weight:800; padding:2px 8px; border-radius:4px; text-transform:uppercase;">ACTIVE ORDER</span>
+                <h3 style="font-size:18px; font-weight:800; margin:4px 0;">Order #${actOrder.orderId} is Out for Delivery!</h3>
+                <p style="font-size:12px; color:#cbd5e1;">Rider is arriving in Gomti Nagar in under 8 minutes.</p>
+              </div>
+              <a href="order-tracking.html?orderId=${actOrder.orderId}" style="background:#a3e635; color:#111; font-weight:800; font-size:13px; padding:10px 18px; border-radius:8px;">
+                <i class="fa-solid fa-location-crosshairs"></i> LIVE TRACKING
+              </a>
+            </div>
+          `;
+        } catch (e) {}
+      }
+
+      // Past orders list
+      let orders = [...SAMPLE_ORDERS];
+      const savedOrders = localStorage.getItem('drinkit_past_orders');
+      if (savedOrders) {
+        try {
+          const parsed = JSON.parse(savedOrders);
+          orders = [...parsed];
+        } catch (e) {}
+      }
+
+      let html = '';
+      orders.forEach(ord => {
+        let itemsHtml = '';
+        if (ord.items) {
+          ord.items.forEach(it => {
+            itemsHtml += `
+              <div class="order-prod-row">
+                <div><strong>${it.name}</strong> × ${it.qty}</div>
+                <div style="color:#64748b;">₹${it.price * it.qty}</div>
+              </div>
+            `;
+          });
+        }
+
+        const isLive = ord.status === 'Out for Delivery';
+        const statusClass = isLive ? 'status-active' : 'status-delivered';
+        const trackBtnHtml = isLive ? `
+          <a href="order-tracking.html?orderId=${ord.orderId}" class="btn-track">
+            <i class="fa-solid fa-location-crosshairs"></i> Track Live
+          </a>
+        ` : '';
+
+        html += `
+          <div class="order-card">
+            <div class="order-card-header">
+              <div class="order-meta">
+                <h3>Order #${ord.orderId}</h3>
+                <div class="order-date">${ord.date}</div>
+              </div>
+              <span class="status-pill ${statusClass}">
+                <i class="fa-solid ${isLive ? 'fa-motorcycle' : 'fa-circle-check'}"></i> ${ord.status}
+              </span>
+            </div>
+
+            <div class="order-item-list">
+              ${itemsHtml}
+            </div>
+
+            <div style="font-size:12px; color:#64748b; margin-bottom:14px;">
+              <i class="fa-solid fa-location-dot" style="color:var(--primary-green)"></i> ${ord.deliveryAddress || 'Gomti Nagar, Lucknow'}
+            </div>
+
+            <div class="order-footer-row">
+              <div class="order-total-price">Total: ₹${ord.totalAmount}</div>
+              <div class="order-actions-btns">
+                <button class="btn-invoice" onclick="alert('Downloading GST Tax Invoice for #${ord.orderId}...')">
+                  <i class="fa-solid fa-download"></i> Invoice
+                </button>
+                <button class="btn-reorder" onclick="reorderItems('${ord.orderId}')">
+                  <i class="fa-solid fa-arrow-rotate-right"></i> Repeat Order
+                </button>
+                ${trackBtnHtml}
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function reorderItems(orderId) {
+      DRINKIT_APP.addToCart('prod-2', 2);
+      DRINKIT_APP.addToCart('prod-3', 1);
+      DRINKIT_APP.showToast('Added items from past order to cart!');
+      DRINKIT_APP.toggleCartDrawer(true);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderOrdersPage();
+    });
+  </script>
+</body>
+</html>

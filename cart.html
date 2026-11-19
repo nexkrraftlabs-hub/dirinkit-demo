@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart - DRINKIT 10 Mins Delivery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .cart-page-layout {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 30px;
+      padding: 30px 0 60px;
+    }
+    .cart-box {
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .cart-box-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #111;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .free-delivery-banner {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      color: #14532d;
+      font-weight: 600;
+    }
+    .cart-items-table {
+      width: 100%;
+    }
+    .cart-page-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .cart-page-item:last-child {
+      border-bottom: none;
+    }
+    .cpi-img {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      background: #f8fafc;
+      border-radius: var(--radius-sm);
+      padding: 6px;
+    }
+    .cpi-details {
+      flex: 1;
+    }
+    .cpi-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    .cpi-vol {
+      font-size: 12px;
+      color: #64748b;
+      margin: 2px 0 4px;
+    }
+    .cpi-price {
+      font-size: 16px;
+      font-weight: 800;
+      color: #111;
+    }
+    .tip-options {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .tip-btn {
+      flex: 1;
+      border: 1px solid var(--border-color);
+      background: #f8fafc;
+      padding: 8px;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 13px;
+      color: #334155;
+    }
+    .tip-btn.active {
+      border-color: var(--primary-green);
+      background: var(--primary-green-light);
+      color: var(--primary-green-hover);
+    }
+    .coupon-input-box {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .coupon-input-box input {
+      flex: 1;
+      padding: 10px 14px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      outline: none;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .coupon-apply-btn {
+      background: #111;
+      color: #fff;
+      font-weight: 800;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+    }
+    .bill-detail-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: #475569;
+      margin-bottom: 10px;
+    }
+    .bill-detail-line.total {
+      font-size: 18px;
+      font-weight: 900;
+      color: #111;
+      border-top: 1px dashed #cbd5e1;
+      padding-top: 14px;
+      margin-top: 14px;
+    }
+    .checkout-now-btn {
+      width: 100%;
+      background: var(--primary-green);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 800;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .checkout-now-btn:hover {
+      background: var(--primary-green-hover);
+    }
+    @media (max-width: 900px) {
+      .cart-page-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Dark Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-left open-location-modal">
+        <i class="fa-solid fa-location-dot loc-icon"></i>
+        <span>Delivering to <strong class="location-text"><span class="active-loc-name">Lucknow, Uttar Pradesh</span> <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i></strong></span>
+      </div>
+      <div class="top-bar-center">
+        <i class="fa-solid fa-bolt"></i>
+        <span>10 Mins Delivery</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="index.html#downloadApp"><i class="fa-solid fa-mobile-screen"></i> Download App</a>
+        <span>|</span>
+        <a href="party-service.html">Partner with us</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-text">DRINKIT<span>.</span></div>
+        <div class="logo-sub">Drinks • Snacks • Party</div>
+      </a>
+      <div class="header-search">
+        <div class="search-wrapper">
+          <input type="text" class="search-input" placeholder="Search for drinks, snacks and more...">
+          <button class="search-icon-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="shop.html" class="header-action-btn" style="color:var(--primary-green);">
+          <i class="fa-solid fa-plus"></i> Add More Items
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="cart-page-layout">
+      <!-- Left Column: Items & Addons -->
+      <div>
+        <div class="free-delivery-banner" id="freeDeliveryBanner">
+          <i class="fa-solid fa-truck-fast" style="font-size: 20px; color: var(--primary-green);"></i>
+          <span id="freeDeliveryText">🎉 You've unlocked FREE 10-Minute Lightning Delivery!</span>
+        </div>
+
+        <div class="cart-box">
+          <div class="cart-box-title">
+            <span>Items in Cart (<span id="cartTotalItemsCount">0</span>)</span>
+            <button onclick="clearAllCart()" style="font-size:12px; color:#ef4444; font-weight:700;">Clear All</button>
+          </div>
+
+          <div id="cartPageList">
+            <!-- Items rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Add Party Essentials upsell -->
+        <div class="cart-box">
+          <div class="cart-box-title">
+            <span>Quick Party Additions</span>
+            <span style="font-size:12px; color:var(--primary-green); font-weight:700;">Frequently Bought</span>
+          </div>
+          <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:12px;">
+            <div style="border:1px solid #e2e8f0; border-radius:8px; padding:10px; text-align:center;">
+              <img src="https://images.unsplash.com/photo-1518057111178-44a106bad636?w=500&auto=format&fit=crop&q=80" style="height:60px; margin:0 auto 6px; object-fit:contain;">
+              <div style="font-size:12px; font-weight:700;">Party Ice Cubes 2kg</div>
+              <div style="font-size:13px; font-weight:800; margin:4px 0;">₹90</div>
+              <button onclick="DRINKIT_APP.addToCart('prod-12', 1)" class="add-btn" style="width:100%; justify-content:center;">+ ADD</button>
+            </div>
+            <div style="border:1px solid #e2e8f0; border-radius:8px; padding:10px; text-align:center;">
+              <img src="https://images.unsplash.com/photo-1559839914-173ef29c2eb5?w=500&auto=format&fit=crop&q=80" style="height:60px; margin:0 auto 6px; object-fit:contain;">
+              <div style="font-size:12px; font-weight:700;">Kinley Club Soda 6x</div>
+              <div style="font-size:13px; font-weight:800; margin:4px 0;">₹150</div>
+              <button onclick="DRINKIT_APP.addToCart('prod-10', 1)" class="add-btn" style="width:100%; justify-content:center;">+ ADD</button>
+            </div>
+            <div style="border:1px solid #e2e8f0; border-radius:8px; padding:10px; text-align:center;">
+              <img src="images/chips-snack.png" style="height:60px; margin:0 auto 6px; object-fit:contain;">
+              <div style="font-size:12px; font-weight:700;">Lay's Gourmet 120g</div>
+              <div style="font-size:13px; font-weight:800; margin:4px 0;">₹60</div>
+              <button onclick="DRINKIT_APP.addToCart('prod-11', 1)" class="add-btn" style="width:100%; justify-content:center;">+ ADD</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tip to delivery hero -->
+        <div class="cart-box">
+          <div class="cart-box-title">
+            <span>Tip Your Delivery Hero</span>
+            <span style="font-size:12px; color:#64748b;">100% goes to your rider</span>
+          </div>
+          <p style="font-size:12px; color:#64748b;">They risk rain, traffic and late nights to bring drinks in 10 minutes.</p>
+          <div class="tip-options">
+            <button class="tip-btn" onclick="selectTip(0, this)">No Tip</button>
+            <button class="tip-btn active" onclick="selectTip(20, this)">₹20</button>
+            <button class="tip-btn" onclick="selectTip(30, this)">₹30</button>
+            <button class="tip-btn" onclick="selectTip(50, this)">₹50</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Coupons & Bill Summary -->
+      <div>
+        <!-- Promo Coupon box -->
+        <div class="cart-box">
+          <div class="cart-box-title">
+            <span>Apply Coupon</span>
+            <span style="font-size:12px; color:var(--primary-green); font-weight:700;"><i class="fa-solid fa-tag"></i> Best Offers</span>
+          </div>
+          <div style="background:#f0fdf4; border:1px dashed #86efac; border-radius:6px; padding:10px 14px; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div style="font-size:13px; font-weight:800; color:#14532d;">DRINKIT100</div>
+              <div style="font-size:11px; color:#166534;">Flat ₹100 OFF on orders above ₹499</div>
+            </div>
+            <button onclick="applyCartCoupon('DRINKIT100')" style="background:var(--primary-green); color:#fff; font-size:11px; font-weight:800; padding:6px 12px; border-radius:4px;">APPLY</button>
+          </div>
+          <div class="coupon-input-box">
+            <input type="text" id="couponCodeInput" placeholder="Enter coupon code">
+            <button class="coupon-apply-btn" onclick="applyCartCoupon(document.getElementById('couponCodeInput').value)">Apply</button>
+          </div>
+        </div>
+
+        <!-- Bill Details -->
+        <div class="cart-box">
+          <div class="cart-box-title">Bill Details</div>
+
+          <div class="bill-detail-line">
+            <span>Item Total</span>
+            <span id="pageItemTotal">₹0</span>
+          </div>
+
+          <div class="bill-detail-line">
+            <span>Delivery Fee (10 Mins Speed)</span>
+            <span id="pageDeliveryFee" style="color:var(--primary-green); font-weight:700;">FREE</span>
+          </div>
+
+          <div class="bill-detail-line">
+            <span>Handling & Government Compliance Fee</span>
+            <span>₹5</span>
+          </div>
+
+          <div class="bill-detail-line" id="discountLineRow" style="display:none; color:var(--primary-green);">
+            <span>Coupon Discount (DRINKIT100)</span>
+            <span id="pageCouponDiscount">-₹100</span>
+          </div>
+
+          <div class="bill-detail-line">
+            <span>Rider Tip</span>
+            <span id="pageRiderTip">₹20</span>
+          </div>
+
+          <div class="bill-detail-line total">
+            <span>Grand Total</span>
+            <span id="pageGrandTotal">₹0</span>
+          </div>
+
+          <div style="margin-top:14px; font-size:12px; color:#64748b; display:flex; gap:6px; align-items:center;">
+            <i class="fa-solid fa-shield-check" style="color:var(--primary-green);"></i>
+            <span>Age verified. Government excise stamp secured.</span>
+          </div>
+
+          <button class="checkout-now-btn" id="proceedCheckoutBtn" onclick="window.location.href='checkout.html'">
+            Proceed to Checkout <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Bottom Nav -->
+  <div class="mobile-nav-bar">
+    <div class="mobile-nav-items">
+      <a href="index.html" class="mob-nav-btn"><i class="fa-solid fa-house"></i><span>Home</span></a>
+      <a href="shop.html" class="mob-nav-btn"><i class="fa-solid fa-border-all"></i><span>Categories</span></a>
+      <a href="orders.html" class="mob-nav-btn"><i class="fa-solid fa-receipt"></i><span>Orders</span></a>
+      <a href="cart.html" class="mob-nav-btn active"><i class="fa-solid fa-cart-shopping"></i><span class="mob-cart-badge">0</span><span>Cart</span></a>
+      <a href="profile.html" class="mob-nav-btn"><i class="fa-solid fa-user"></i><span>Profile</span></a>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    let activeTip = 20;
+
+    function renderCartPage() {
+      const container = document.getElementById('cartPageList');
+      const itemsCountEl = document.getElementById('cartTotalItemsCount');
+      const itemTotalEl = document.getElementById('pageItemTotal');
+      const deliveryFeeEl = document.getElementById('pageDeliveryFee');
+      const discountRow = document.getElementById('discountLineRow');
+      const discountValEl = document.getElementById('pageCouponDiscount');
+      const tipValEl = document.getElementById('pageRiderTip');
+      const grandTotalEl = document.getElementById('pageGrandTotal');
+      const checkoutBtn = document.getElementById('proceedCheckoutBtn');
+
+      if (!container) return;
+
+      if (DRINKIT_APP.cart.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 40px 10px; color:#94a3b8;">
+            <div style="font-size: 54px; margin-bottom: 12px;">🛒</div>
+            <h3 style="color:#1e293b; font-size:18px; margin-bottom:6px;">Your cart is empty</h3>
+            <p style="font-size:13px; color:#64748b;">Looks like you haven't added anything to your cart yet.</p>
+            <a href="shop.html" style="display:inline-block; margin-top:16px; background:#21a038; color:#fff; padding:10px 24px; border-radius:8px; font-weight:700; font-size:14px;">Browse Drinks & Snacks</a>
+          </div>
+        `;
+        itemsCountEl.textContent = '0';
+        itemTotalEl.textContent = '₹0';
+        grandTotalEl.textContent = '₹0';
+        if (checkoutBtn) {
+          checkoutBtn.style.opacity = '0.5';
+          checkoutBtn.style.pointerEvents = 'none';
+        }
+        return;
+      }
+
+      if (checkoutBtn) {
+        checkoutBtn.style.opacity = '1';
+        checkoutBtn.style.pointerEvents = 'auto';
+      }
+
+      let html = '';
+      DRINKIT_APP.cart.forEach(item => {
+        html += `
+          <div class="cart-page-item">
+            <img src="${item.image}" alt="${item.name}" class="cpi-img">
+            <div class="cpi-details">
+              <div class="cpi-name">${item.name}</div>
+              <div class="cpi-vol">${item.volume}</div>
+              <div class="cpi-price">₹${item.price}</div>
+            </div>
+            <div class="qty-counter">
+              <button onclick="DRINKIT_APP.updateQuantity('${item.id}', -1)">-</button>
+              <span class="qty-number">${item.qty}</span>
+              <button onclick="DRINKIT_APP.updateQuantity('${item.id}', 1)">+</button>
+            </div>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+
+      itemsCountEl.textContent = DRINKIT_APP.getCartCount();
+      const subtotal = DRINKIT_APP.getCartTotal();
+      itemTotalEl.textContent = `₹${subtotal}`;
+
+      const deliveryFee = subtotal >= 500 ? 0 : 29;
+      deliveryFeeEl.textContent = deliveryFee === 0 ? 'FREE' : `₹${deliveryFee}`;
+
+      const discount = DRINKIT_APP.currentCoupon === 'DRINKIT100' && subtotal >= 499 ? 100 : 0;
+      if (discount > 0) {
+        discountRow.style.display = 'flex';
+        discountValEl.textContent = `-₹${discount}`;
+      } else {
+        discountRow.style.display = 'none';
+      }
+
+      tipValEl.textContent = `₹${activeTip}`;
+
+      const grandTotal = Math.max(0, subtotal + deliveryFee + 5 - discount + activeTip);
+      grandTotalEl.textContent = `₹${grandTotal}`;
+    }
+
+    function selectTip(amount, btn) {
+      activeTip = amount;
+      document.querySelectorAll('.tip-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderCartPage();
+    }
+
+    function applyCartCoupon(code) {
+      if (!code) return;
+      DRINKIT_APP.applyCouponCode(code);
+      renderCartPage();
+    }
+
+    function clearAllCart() {
+      if (confirm('Are you sure you want to remove all items from your cart?')) {
+        DRINKIT_APP.cart = [];
+        DRINKIT_APP.saveState();
+        renderCartPage();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCartPage();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details - DRINKIT 10 Mins Delivery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .pdp-container {
+      padding: 30px 16px 60px;
+    }
+    .breadcrumbs {
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .breadcrumbs a:hover {
+      color: var(--primary-green);
+    }
+    .pdp-grid {
+      display: grid;
+      grid-template-columns: 480px 1fr;
+      gap: 40px;
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+    }
+    .pdp-gallery {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .main-image-stage {
+      width: 100%;
+      height: 380px;
+      background: #f8fafc;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      border: 1px solid #f1f5f9;
+    }
+    .main-image-stage img {
+      max-height: 340px;
+      max-width: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 15px 25px rgba(0,0,0,0.15));
+      transition: transform 0.3s ease;
+    }
+    .main-image-stage:hover img {
+      transform: scale(1.08);
+    }
+    .pdp-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .pdp-brand-tag {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--primary-green);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    .pdp-title {
+      font-size: 28px;
+      font-weight: 900;
+      color: #111;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .pdp-ratings-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+    .rating-badge {
+      background: #15803d;
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 800;
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .pdp-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 14px 0;
+      border-top: 1px solid #f1f5f9;
+      border-bottom: 1px solid #f1f5f9;
+      margin-bottom: 20px;
+    }
+    .pdp-current-price {
+      font-size: 32px;
+      font-weight: 900;
+      color: #111;
+    }
+    .pdp-original-price {
+      font-size: 18px;
+      color: #94a3b8;
+      text-decoration: line-through;
+    }
+    .pdp-discount-badge {
+      background: #fef2f2;
+      color: #ef4444;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .spec-box {
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 10px;
+      text-align: center;
+    }
+    .spec-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .spec-val {
+      font-size: 14px;
+      font-weight: 800;
+      color: #111;
+      margin-top: 2px;
+    }
+    .delivery-eta-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      margin-bottom: 24px;
+    }
+    .eta-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-full);
+      background: var(--primary-green);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+    .pdp-actions-row {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .btn-add-pdp {
+      flex: 1;
+      background: var(--primary-green);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 800;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-add-pdp:hover {
+      background: var(--primary-green-hover);
+    }
+    .btn-buy-now {
+      background: #111;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 800;
+      padding: 14px 28px;
+      border-radius: var(--radius-md);
+    }
+    .btn-buy-now:hover {
+      background: #333;
+    }
+    .pdp-tabs {
+      margin-top: 36px;
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px 30px;
+    }
+    .notes-box {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      padding: 14px;
+      border-radius: 4px;
+      margin-top: 12px;
+      font-size: 14px;
+      color: #92400e;
+    }
+    @media (max-width: 900px) {
+      .pdp-grid {
+        grid-template-columns: 1fr;
+        padding: 20px;
+      }
+      .main-image-stage {
+        height: 280px;
+      }
+      .pdp-actions-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Dark Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-left open-location-modal">
+        <i class="fa-solid fa-location-dot loc-icon"></i>
+        <span>Delivering to <strong class="location-text"><span class="active-loc-name">Lucknow, Uttar Pradesh</span> <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i></strong></span>
+      </div>
+      <div class="top-bar-center">
+        <i class="fa-solid fa-bolt"></i>
+        <span>10 Mins Delivery</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="index.html#downloadApp"><i class="fa-solid fa-mobile-screen"></i> Download App</a>
+        <span>|</span>
+        <a href="party-service.html">Partner with us</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-text">DRINKIT<span>.</span></div>
+        <div class="logo-sub">Drinks • Snacks • Party</div>
+      </a>
+      <div class="header-search">
+        <div class="search-wrapper">
+          <input type="text" class="search-input" placeholder="Search for drinks, snacks and more...">
+          <button class="search-icon-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="shop.html?filter=deals" class="header-action-btn offers-btn">
+          <span class="offers-badge"><i class="fa-solid fa-percent"></i></span>
+          <span>Offers</span>
+        </a>
+        <div class="account-wrapper">
+          <button class="header-action-btn">
+            <i class="fa-regular fa-user" style="font-size:16px;"></i>
+            <div style="text-align: left; line-height: 1.1;">
+              <span style="font-size: 11px; color: #94a3b8; display: block;">Sign in</span>
+              <span style="font-weight: 700;">My Account <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></span>
+            </div>
+          </button>
+          <div class="account-dropdown">
+            <a href="profile.html"><i class="fa-solid fa-user-circle"></i> My Profile</a>
+            <a href="orders.html"><i class="fa-solid fa-box"></i> My Orders</a>
+            <a href="order-tracking.html"><i class="fa-solid fa-location-crosshairs"></i> Live Tracking</a>
+          </div>
+        </div>
+        <button class="cart-btn open-cart-drawer">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span>Cart</span>
+          <span class="cart-badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- PDP Main Content -->
+  <div class="container pdp-container">
+    <div class="breadcrumbs">
+      <a href="index.html">Home</a> <i class="fa-solid fa-chevron-right" style="font-size:10px;"></i>
+      <a href="shop.html">Shop</a> <i class="fa-solid fa-chevron-right" style="font-size:10px;"></i>
+      <span id="pdpBreadcrumbCategory">Beverages</span> <i class="fa-solid fa-chevron-right" style="font-size:10px;"></i>
+      <span id="pdpBreadcrumbTitle" style="color:#111; font-weight:600;">Product</span>
+    </div>
+
+    <div class="pdp-grid">
+      <!-- Image stage -->
+      <div class="pdp-gallery">
+        <div class="main-image-stage">
+          <img id="pdpMainImg" src="" alt="Product">
+        </div>
+      </div>
+
+      <!-- Information & Purchase -->
+      <div class="pdp-info">
+        <div class="pdp-brand-tag" id="pdpBrand">Brand Name</div>
+        <h1 class="pdp-title" id="pdpTitle">Product Name</h1>
+        
+        <div class="pdp-ratings-row">
+          <span class="rating-badge"><i class="fa-solid fa-star"></i> <span id="pdpRating">4.8</span></span>
+          <span style="color:#64748b;" id="pdpReviews">3,420 ratings & reviews</span>
+          <span>•</span>
+          <span style="color:#16a34a; font-weight:700;"><i class="fa-solid fa-circle-check"></i> In Stock</span>
+        </div>
+
+        <div class="pdp-price-row">
+          <div class="pdp-current-price" id="pdpPrice">₹0</div>
+          <div class="pdp-original-price" id="pdpOriginalPrice">₹0</div>
+          <div class="pdp-discount-badge" id="pdpDiscountBadge">15% OFF</div>
+        </div>
+
+        <!-- Specifications -->
+        <div class="spec-grid">
+          <div class="spec-box">
+            <div class="spec-label">Volume</div>
+            <div class="spec-val" id="pdpVolume">750ml</div>
+          </div>
+          <div class="spec-box">
+            <div class="spec-label">Alcohol (ABV)</div>
+            <div class="spec-val" id="pdpABV">42.8%</div>
+          </div>
+          <div class="spec-box">
+            <div class="spec-label">Origin</div>
+            <div class="spec-val" id="pdpOrigin">India</div>
+          </div>
+        </div>
+
+        <!-- 10 Mins ETA -->
+        <div class="delivery-eta-badge">
+          <div class="eta-icon"><i class="fa-solid fa-bolt"></i></div>
+          <div>
+            <div style="font-size:14px; font-weight:800; color:#14532d;">Chilled 10-Minute Delivery</div>
+            <div style="font-size:12px; color:#166534;">Order right now and get it at your doorstep by <strong id="pdpEtaTime">1:20 PM</strong></div>
+          </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="pdp-actions-row">
+          <button class="btn-add-pdp" id="pdpAddBtn" onclick="handlePdpAdd()">
+            <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+          </button>
+          <button class="btn-buy-now" onclick="handlePdpBuyNow()">
+            Buy Now
+          </button>
+        </div>
+
+        <div style="display:flex; gap:20px; font-size:12px; color:#64748b; border-top:1px solid #f1f5f9; padding-top:16px;">
+          <div><i class="fa-solid fa-shield-halved" style="color:var(--primary-green)"></i> 100% Genuine Seal</div>
+          <div><i class="fa-solid fa-temperature-arrow-down" style="color:var(--primary-green)"></i> Delivered Chilled</div>
+          <div><i class="fa-solid fa-id-card" style="color:var(--primary-green)"></i> 21+ Age Verified</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Description & Tasting notes -->
+    <div class="pdp-tabs">
+      <h3 style="font-size:18px; font-weight:800; margin-bottom:12px;">Product Description</h3>
+      <p id="pdpDescription" style="font-size:14px; line-height:1.7; color:#475569; margin-bottom:16px;">
+        <!-- Description -->
+      </p>
+
+      <h4 style="font-size:15px; font-weight:800; color:#111; margin-top:20px;">Tasting Notes</h4>
+      <div class="notes-box">
+        <i class="fa-solid fa-wine-glass" style="margin-right:6px;"></i> <span id="pdpTastingNotes">Smoky peat, caramel finish</span>
+      </div>
+
+      <h4 style="font-size:15px; font-weight:800; color:#111; margin-top:20px;">Recommended Food Pairing</h4>
+      <p id="pdpPairing" style="font-size:14px; color:#475569; margin-top:6px;">
+        Masala peanuts, spicy kebabs, salted roasted cashew nuts.
+      </p>
+    </div>
+  </div>
+
+  <!-- Cart Drawer -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <h3><i class="fa-solid fa-bag-shopping" style="color:var(--primary-green)"></i> Your Drinkit Cart</h3>
+      <button class="close-drawer-btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="cart-drawer-body" id="cartDrawerItems"></div>
+    <div class="cart-drawer-footer">
+      <div class="bill-row">
+        <span>Item Subtotal</span>
+        <span id="drawerSubtotal">₹0</span>
+      </div>
+      <div class="bill-row">
+        <span>Delivery Fee (10 Mins)</span>
+        <span style="color:#16a34a; font-weight:700;">FREE</span>
+      </div>
+      <div class="bill-row total-row">
+        <span>To Pay</span>
+        <span id="drawerTotal">₹0</span>
+      </div>
+      <a href="checkout.html" class="checkout-action-btn" id="drawerCheckoutBtn">
+        Proceed to Checkout <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Mobile Bottom Nav -->
+  <div class="mobile-nav-bar">
+    <div class="mobile-nav-items">
+      <a href="index.html" class="mob-nav-btn"><i class="fa-solid fa-house"></i><span>Home</span></a>
+      <a href="shop.html" class="mob-nav-btn"><i class="fa-solid fa-border-all"></i><span>Categories</span></a>
+      <a href="orders.html" class="mob-nav-btn"><i class="fa-solid fa-receipt"></i><span>Orders</span></a>
+      <a href="javascript:void(0)" class="mob-nav-btn open-cart-drawer"><i class="fa-solid fa-cart-shopping"></i><span class="mob-cart-badge">0</span><span>Cart</span></a>
+      <a href="profile.html" class="mob-nav-btn"><i class="fa-solid fa-user"></i><span>Profile</span></a>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    let currentProd = null;
+
+    function initPDP() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const prodId = urlParams.get('id') || 'prod-1';
+      currentProd = DRINKIT_PRODUCTS.find(p => p.id === prodId) || DRINKIT_PRODUCTS[0];
+
+      document.title = `${currentProd.name} - DRINKIT 10 Mins Delivery`;
+      document.getElementById('pdpBreadcrumbCategory').textContent = currentProd.category.toUpperCase();
+      document.getElementById('pdpBreadcrumbTitle').textContent = currentProd.name;
+      document.getElementById('pdpMainImg').src = currentProd.image;
+      document.getElementById('pdpBrand').textContent = currentProd.brand;
+      document.getElementById('pdpTitle').textContent = currentProd.name;
+      document.getElementById('pdpRating').textContent = currentProd.rating;
+      document.getElementById('pdpReviews').textContent = `${currentProd.reviewsCount.toLocaleString()} verified ratings`;
+      document.getElementById('pdpPrice').textContent = `₹${currentProd.price}`;
+      document.getElementById('pdpOriginalPrice').textContent = `₹${currentProd.originalPrice}`;
+      
+      const discount = Math.round(((currentProd.originalPrice - currentProd.price) / currentProd.originalPrice) * 100);
+      document.getElementById('pdpDiscountBadge').textContent = `${discount}% OFF`;
+
+      document.getElementById('pdpVolume').textContent = currentProd.volume;
+      document.getElementById('pdpABV').textContent = currentProd.alcoholPercentage;
+      document.getElementById('pdpOrigin').textContent = currentProd.origin;
+      document.getElementById('pdpDescription').textContent = currentProd.description;
+      document.getElementById('pdpTastingNotes').textContent = currentProd.tastingNotes;
+      document.getElementById('pdpPairing').textContent = currentProd.foodPairing;
+
+      // ETA
+      const now = new Date();
+      now.setMinutes(now.getMinutes() + 12);
+      const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      document.getElementById('pdpEtaTime').textContent = timeStr;
+    }
+
+    function handlePdpAdd() {
+      if (!currentProd) return;
+      DRINKIT_APP.addToCart(currentProd.id, 1);
+      DRINKIT_APP.toggleCartDrawer(true);
+    }
+
+    function handlePdpBuyNow() {
+      if (!currentProd) return;
+      DRINKIT_APP.addToCart(currentProd.id, 1);
+      window.location.href = 'checkout.html';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initPDP();
+    });
+  </script>
+</body>
+</html>
